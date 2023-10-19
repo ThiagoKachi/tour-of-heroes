@@ -1,7 +1,17 @@
 <mat-toolbar color="primary">
   <span>{{ title }}</span>
+  <span fxFlex></span>
+    <button
+      mat-icon-button
+      matTooltip="Heroes list"
+      aria-label="Link to view heroes list"
+      routerLink="/heroes"
+    >
+      <mat-icon>sports_martial_arts</mat-icon>
+    </button>
 </mat-toolbar>
 
 <div class="content">
-  <app-heroes></app-heroes>
+  <router-outlet></router-outlet>
+  <app-messages></app-messages>
 </div>
