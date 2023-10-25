@@ -1,12 +1,4 @@
-.heroes {
+.mat-row:hover {
   cursor: pointer;
-
-  .selected {
-    background-color: #777;
-    color: white;
-    font-weight: 500;
-    border-radius: 4px;
-    text-decoration: underline;
-    width: 150px;
-  }
+  background-color: whitesmoke;
 }

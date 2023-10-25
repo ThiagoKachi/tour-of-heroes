@@ -1,14 +1,19 @@
-<h2>My Heroes</h2>
-<ul class="heroes">
-  <li
-    *ngFor="let hero of heroes"
-    [class.selected]="hero === selectedHero"
-    (click)="onSelect(hero)"
-    aria-hidden="true"
-  >
-    <span>{{ hero.id }} - </span>
-    {{ hero.name }}
-  </li>
-</ul>
+<h1>My Heroes</h1>
 
-<app-hero-detail [hero]="selectedHero"></app-hero-detail>
+<mat-table [dataSource]="heroes">
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+  </ng-container>
+
+  <!-- Header and Row Declarations -->
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row
+    *matRowDef="let row; columns: displayedColumns"
+    [routerLink]="['/heroes', row.id]"></mat-row>
+</mat-table>
