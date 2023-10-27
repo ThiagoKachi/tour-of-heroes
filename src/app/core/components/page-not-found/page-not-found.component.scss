@@ -1,0 +1,13 @@
+.not-found-container {
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #444;
+  font-family: sans-serif;
+
+  button {
+    margin-top: 8px;
+  }
+}

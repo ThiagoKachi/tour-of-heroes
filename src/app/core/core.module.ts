@@ -4,11 +4,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../material/material.module';
 import { MessagesComponent } from './components/messages/messages.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 const COMPONENTS = [
   ToolbarComponent,
-  MessagesComponent
+  MessagesComponent,
+  PageNotFoundComponent
 ]
 
 const MODULES = [
