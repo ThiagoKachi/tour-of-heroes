@@ -28,6 +28,18 @@ export class HeroService {
     );
   }
 
+  createHero(hero: Hero): Observable<Hero> {
+    return this.http.post<Hero>(this.heroesUrl, hero).pipe(
+      tap(hero => this.log(`Create hero ${hero.name}`))
+    )
+  }
+
+  updateHero(hero: Hero): Observable<Hero> {
+    return this.http.put<Hero>(`${this.heroesUrl}/${hero.id}`, hero).pipe(
+      tap(hero => this.log(`Updated hero ${hero.name}`))
+    )
+  }
+
   private log(message: string): void {
     this.messageService.add(`HeroService: ${message}`);
   }

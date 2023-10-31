@@ -1,3 +1,16 @@
+.hero-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 8px;
+
+  button {
+    height: 40px;
+    width: 40px;
+  }
+}
+
 .mat-row:hover {
   cursor: pointer;
   background-color: whitesmoke;
