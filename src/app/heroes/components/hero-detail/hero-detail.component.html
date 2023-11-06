@@ -1,50 +1,58 @@
 <div>
   <h1>{{ isEditing ? 'Update' : 'Create' }} Hero</h1>
 
-  <mat-card>
-    <mat-card-content fxLayout="column">
-      <mat-form-field *ngIf="isEditing">
-        <mat-label>ID</mat-label>
-        <input matInput disabled [value]="hero.id">
-      </mat-form-field>
+  <form [formGroup]="form" novalidate>
+    <mat-card>
+      <mat-card-content fxLayout="column">
+        <mat-form-field *ngIf="isEditing">
+          <mat-label>ID</mat-label>
+          <input matInput formControlName="id">
+        </mat-form-field>
 
-      <mat-form-field>
-        <mat-label>Hero Name</mat-label>
-        <input
-          matInput
-          type="text"
-          [(ngModel)]="hero.name"
-          id="name"
-          placeholder="Name"
+        <mat-form-field>
+          <mat-label>Hero Name</mat-label>
+          <input
+            matInput
+            type="text"
+            id="name"
+            placeholder="Name"
+            formControlName="name"
+          >
+          <mat-error *ngIf="form.controls.name.hasError('required')">
+            Name is required
+          </mat-error>
+
+          <mat-error *ngIf="form.controls.name.hasError('minlength')">
+            Name should contain at least 3 characters
+          </mat-error>
+        </mat-form-field>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-raised-button (click)="goBack()" class="go-back-btn">
+          Go Back
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="create()"
+          class="go-back-btn"
+          *ngIf="!isEditing"
         >
-      </mat-form-field>
-    </mat-card-content>
+          Create
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="update()"
+          class="go-back-btn"
+          *ngIf="isEditing"
+        >
+          Update
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
 
-    <mat-card-actions>
-      <button mat-raised-button (click)="goBack()" class="go-back-btn">
-        Go Back
-      </button>
-      <button
-        mat-raised-button
-        [disabled]="!isFormValid()"
-        color="primary"
-        (click)="create()"
-        class="go-back-btn"
-        *ngIf="!isEditing"
-      >
-        Create
-      </button>
-      <button
-        mat-raised-button
-        [disabled]="!isFormValid()"
-        color="primary"
-        (click)="update()"
-        class="go-back-btn"
-        *ngIf="isEditing"
-      >
-        Update
-      </button>
-    </mat-card-actions>
-  </mat-card>
 
 </div>
