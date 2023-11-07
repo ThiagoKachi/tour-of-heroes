@@ -23,7 +23,7 @@ export class HeroService {
   }
 
   getHero(id: number): Observable<Hero> {
-    return this.http.get<Hero>(`${this.heroesUrl}/${id}`).pipe(
+    return this.http.get<Hero>(this.getUrl(id)).pipe(
       tap((hero => this.log(`Fetched hero ${hero.name}`)))
     );
   }
@@ -35,12 +35,22 @@ export class HeroService {
   }
 
   updateHero(hero: Hero): Observable<Hero> {
-    return this.http.put<Hero>(`${this.heroesUrl}/${hero.id}`, hero).pipe(
+    return this.http.put<Hero>(this.getUrl(hero.id), hero).pipe(
       tap(hero => this.log(`Updated hero ${hero.name}`))
+    )
+  }
+
+  deleteHero(hero: Hero): Observable<any> {
+    return this.http.delete<any>(this.getUrl(hero.id)).pipe(
+      tap(() => this.log(`Deleted ${hero.name}`))
     )
   }
 
   private log(message: string): void {
     this.messageService.add(`HeroService: ${message}`);
+  }
+
+  private getUrl(id: number): string {
+    return `${this.heroesUrl}/${id}`;
   }
 }
