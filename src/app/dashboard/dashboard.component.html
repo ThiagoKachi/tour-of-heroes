@@ -1,12 +1,17 @@
 <h1>Dashboard</h1>
 
-<div
-  fxLayout
-  fxLayout.xs="column"
-  fxLayoutGap="12px"
-  fxLayoutAlign="space-between"
->
-  <mat-card *ngFor="let hero of heroes" class="hero-card" routerLink="/heroes/{{hero.id}}">
-    <mat-card-title>{{hero.name}}</mat-card-title>
-  </mat-card>
+<div fxLayout="column" fxLayoutGap="24px">
+  <div
+    fxLayout
+    fxLayout.xs="column"
+    fxLayoutGap="12px"
+    fxLayoutAlign="space-between"
+  >
+    <mat-card *ngFor="let hero of heroes" class="hero-card" routerLink="/heroes/{{hero.id}}">
+      <mat-card-title>{{hero.name}}</mat-card-title>
+    </mat-card>
+  </div>
+
+  <app-hero-search [label]="'Hero search'" (selected)="onSelected($event)"></app-hero-search>
 </div>
+

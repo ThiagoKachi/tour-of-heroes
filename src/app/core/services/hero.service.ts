@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { Observable, of, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Hero } from '../models/hero.model';
 import { MessageService } from './message.service';
@@ -25,6 +25,19 @@ export class HeroService {
   getHero(id: number): Observable<Hero> {
     return this.http.get<Hero>(this.getUrl(id)).pipe(
       tap((hero => this.log(`Fetched hero ${hero.name}`)))
+    );
+  }
+
+  searchHero(term: string): Observable<Hero[]> {
+    if (!term.trim()) {
+      return of([]);
+    }
+
+    return this.http.get<Hero[]>(`${this.heroesUrl}?name=${term}`).pipe(
+      tap((heroes =>
+        heroes.length
+        ? this.log(`Found ${heroes.length} heroes matching "${term}"`)
+        : this.log(`No heroes matching with ${term}`)))
     );
   }
 

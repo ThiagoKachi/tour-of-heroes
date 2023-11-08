@@ -6,6 +6,9 @@
   </button>
 </div>
 
+<app-hero-search [label]="'Hero to delete'" (selected)="onSelected($event)">
+</app-hero-search>
+
 <mat-table [dataSource]="heroes" class="mat-elevation-z6">
   <ng-container matColumnDef="id">
     <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
