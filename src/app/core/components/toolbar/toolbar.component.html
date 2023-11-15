@@ -1,6 +1,9 @@
 <mat-toolbar color="primary">
   <span>{{ title }}</span>
+
   <span fxFlex></span>
+
+  <ng-container *ngIf="isLoggedIn">
     <button
       aria-label="menuItem.tooltipText"
       mat-icon-button
@@ -10,4 +13,19 @@
     >
       <mat-icon>{{menuItem.icon}}</mat-icon>
     </button>
+  </ng-container>
+
+  <a mat-button matTooltip="Login into app" *ngIf="!isLoggedIn" routerLink="/login">
+    Login
+  </a>
+
+  <div *ngIf="isLoggedIn">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+  </div>
+
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="onLogout()">Logout</button>
+  </mat-menu>
 </mat-toolbar>
