@@ -13,7 +13,7 @@ import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 
-const COMPONENTS = [
+const CORE_COMPONENTS = [
   ToolbarComponent,
   MessagesComponent,
   PageNotFoundComponent,
@@ -28,12 +28,9 @@ const MODULES = [
 ]
 
 @NgModule({
-  declarations: [COMPONENTS],
+  declarations: [CORE_COMPONENTS],
   imports: [CommonModule ,MODULES],
-  exports: [
-    MODULES,
-    COMPONENTS,
-  ],
+  exports: [CORE_COMPONENTS],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
